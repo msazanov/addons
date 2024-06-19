@@ -1,10 +1,10 @@
 ---
 version: 2.4.5
-slug: silabs_multiprotocol
-name: Silicon Labs Multiprotocol
+slug: silabs_multiprotocol_zme
+name: Silicon Labs Multiprotocol ZME
 description: Zigbee and OpenThread multiprotocol add-on
 url: >
-  https://github.com/home-assistant/addons/tree/master/silabs-multiprotocol
+  https://github.com/msazanov/addons/tree/master/silabs-multiprotocol
 arch:
   - armv7
   - aarch64
@@ -21,7 +21,7 @@ host_uts: true
 privileged:
   - IPC_LOCK
   - NET_ADMIN
-image: homeassistant/{arch}-addon-silabs-multiprotocol
+image: ghcr.io/msazanov/{arch}-addon-silabs-multiprotocol
 init: false
 options:
   device: null
