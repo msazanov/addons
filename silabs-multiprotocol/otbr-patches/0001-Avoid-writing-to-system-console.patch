@@ -5,7 +5,7 @@ Date: Thu, 17 Feb 2022 22:57:16 +0100
 Subject: [PATCH] Avoid writing to system console
 
 Add-ons do not have a working syslog infrastructure. The LOG_CONS
-options causes syslog() calls to log to the system console
+option causes syslog() calls to log to the system console
 (/dev/console). Avoid writing to system console as we use logging to
 stderr.
 ---
@@ -13,18 +13,14 @@ stderr.
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/common/logging.cpp b/src/common/logging.cpp
-index 5398e47133..69f150dadb 100644
+index 79c02d9..69f150d 100644
 --- a/src/common/logging.cpp
 +++ b/src/common/logging.cpp
-@@ -83,7 +83,7 @@ void otbrLogInit(const char *aIdent, otbrLogLevel aLevel, bool aPrintStderr)
-     assert(aIdent);
-     assert(aLevel >= OTBR_LOG_EMERG && aLevel <= OTBR_LOG_DEBUG);
- 
--    openlog(aIdent, (LOG_CONS | LOG_PID) | (aPrintStderr ? LOG_PERROR : 0), OTBR_SYSLOG_FACILITY_ID);
-+    openlog(aIdent, LOG_PID | (aPrintStderr ? LOG_PERROR : 0), LOG_USER);
+@@ -49,7 +49,7 @@ void otbrLogInit(const char *aProgramName, otbrLogLevel aLevel, bool aPrintStder
+     openlog(ident, (LOG_CONS | LOG_PID) | (aPrintStderr ? LOG_PERROR : 0), OTBR_SYSLOG_FACILITY_ID);
      sLevel        = aLevel;
      sDefaultLevel = sLevel;
  }
+
 -- 
 2.39.1
-
