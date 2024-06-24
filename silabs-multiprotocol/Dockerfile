@@ -9,7 +9,7 @@ ENV \
 
 WORKDIR /usr/src
 
-## Allow to reuse downloaded packages (these are only staged build images)
+# Allow to reuse downloaded packages (these are only staged build images)
 # hadolint ignore=DL3009
 RUN \
     set -x \
