@@ -9,8 +9,8 @@ the listening socket to the new instance in case a controller reset is
 being requested. This makes sure the TCP connection stays up even when
 zigbeed restarts.
 ---
- protocol/zigbee/app/zigbeed/serial_adapter.c | 169 +++++++++++--------
- 1 file changed, 99 insertions(+), 70 deletions(-)
+ protocol/zigbee/app/zigbeed/serial_adapter.c | 171 +++++++++++--------
+ 1 file changed, 100 insertions(+), 71 deletions(-)
 
 diff --git a/protocol/zigbee/app/zigbeed/serial_adapter.c b/protocol/zigbee/app/zigbeed/serial_adapter.c
 index f48630509..2807ab91c 100644
@@ -222,7 +222,7 @@ index f48630509..2807ab91c 100644
 +  char buf[16];
  
 -  return EMBER_SUCCESS;
-+  // If we aave a valid socket, leave it open and pass fd number to
++  // If we have a valid socket, leave it open and pass fd number to
 +  // the new instance.
 +  if (socketFd > 0) {
 +    snprintf(buf, sizeof(buf), "%d", socketFd);
@@ -275,4 +275,3 @@ index f48630509..2807ab91c 100644
      assert(false);
 -- 
 2.39.0
-
